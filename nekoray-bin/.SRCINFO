@@ -1,0 +1,23 @@
+pkgbase = nekoray-bin
+	pkgdesc = Qt based cross-platform GUI proxy configuration manager (backend: v2ray / sing-box)
+	pkgver = 4.0.beta4
+	pkgrel = 1
+	url = https://github.com/MatsuriDayo/nekoray
+	arch = x86_64
+	license = GPL 3.0
+	depends = qt6-base
+	depends = qt6-svg
+	depends = qt6-tools
+	optdepends = sing-geoip: geoip data for NekoBox
+	optdepends = sing-geosite: geosite data for NekoBox
+	provides = nekoray
+	conflicts = nekoray-git
+	conflicts = nekoray
+	source = nekoray-4.0-beta4.zip::https://github.com/MatsuriDayo/nekoray/releases/download/4.0-beta4/nekoray-4.0-beta4-2024-10-09-linux64.zip
+	source = nekobox.desktop
+	source = nekobox.sh
+	sha256sums = SKIP
+	sha256sums = b98601ec61257cdf598f7ca581e8a998ef53d6078f606f5aadc64e95a80961ab
+	sha256sums = 6207abdcdbd6c682f7fcba2180749b46c940d6e098b7a354e920cd0e4379e1e4
+
+pkgname = nekoray-bin

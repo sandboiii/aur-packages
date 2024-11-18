@@ -1,0 +1,50 @@
+# Maintainer: Ali Molaei <ali dot molaei at protonmail dot com>
+# Contributor: Maz <m47h4r at gmail dot com>
+# Contributor: Molyuu <zhangjtroger at gmail dot com>
+
+pkgname=nekoray-bin
+_pkgname=nekoray
+pkgver=4.0.beta4
+_pkgver=4.0-beta4
+_releasedate=2024-10-09
+pkgrel=1
+pkgdesc="Qt based cross-platform GUI proxy configuration manager (backend: v2ray / sing-box)"
+arch=('x86_64')
+url="https://github.com/MatsuriDayo/nekoray"
+license=('GPL 3.0')
+groups=()
+depends=('qt6-base' 'qt6-svg' 'qt6-tools')
+provides=('nekoray')
+conflicts=('nekoray-git' 'nekoray')
+optdepends=(
+    'sing-geoip: geoip data for NekoBox'
+    'sing-geosite: geosite data for NekoBox'
+)
+
+source=(
+    "${_pkgname}-${_pkgver}.zip::${url}/releases/download/${_pkgver}/nekoray-${_pkgver}-${_releasedate}-linux64.zip"
+    "nekobox.desktop"
+    "nekobox.sh"
+)
+
+sha256sums=(
+    'SKIP'
+    'b98601ec61257cdf598f7ca581e8a998ef53d6078f606f5aadc64e95a80961ab'
+    '6207abdcdbd6c682f7fcba2180749b46c940d6e098b7a354e920cd0e4379e1e4'
+)
+
+package() {
+    install -dm755 "${pkgdir}/usr/bin/"
+
+    # Assets
+    install -Dm644 nekobox.desktop -t "${pkgdir}/usr/share/applications/"
+    install -Dm644 "${_pkgname}/nekobox.png" -t "${pkgdir}/usr/share/pixmaps/"
+
+    install -Dm755 "${_pkgname}/nekobox_core" -t "${pkgdir}/usr/lib/nekobox/"
+
+    # Binary file
+    install -Dm755 "${_pkgname}/nekobox" -t "${pkgdir}/usr/lib/nekobox/"
+
+    # Launcher
+    install -Dm755 nekobox.sh "${pkgdir}/usr/bin/nekobox"
+}
